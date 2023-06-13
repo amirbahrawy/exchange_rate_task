@@ -53,7 +53,6 @@ class ExchangeRateRemoteDataSourceImpl implements ExchangeRateRemoteDataSource {
       //handle error changes based on the api and backend
       if (![201, 200].contains(response.statusCode))
         throw RequestException('Connection Error ${response.statusCode}');
-
       return SymbolsData.fromMap(response.data);
     });
   }

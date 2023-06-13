@@ -10,7 +10,7 @@ import 'exchange_rate_state.dart';
 class ExchangeRateCubit extends BaseCubit<ExchangeRateState> {
   ExchangeRateCubit(
     this._exchangeRateRepository,
-  ) : super(const ExchangeRateState());
+  ) : super(ExchangeRateState());
 
   final ExchangeRateRepository _exchangeRateRepository;
 
@@ -19,17 +19,16 @@ class ExchangeRateCubit extends BaseCubit<ExchangeRateState> {
   }) async {
     try {
       if (!refresh)
-        emit(state.copyWith(status: ExchangeRateStateStatus.loading));
+        emit(state.copyWith(status: ExchangeRateStateStatus.rateLoading));
       final exchangeRateData = await _exchangeRateRepository.getExchangeRates(
-        base: state.exchangeRateData?.base,
-        symbols: state.exchangeRateData?.symbol,
-        startDate: state.exchangeRateData?.startDate,
-        endDate: state.exchangeRateData?.endDate,
+        base: state.base,
+        symbols: state.symbol,
+        startDate: state.startDate,
+        endDate: state.endDate,
       );
-      log(exchangeRateData.rates?.entries.first.key ?? 'no data');
       emit(state.copyWith(
         status: ExchangeRateStateStatus.loaded,
-        exchangeRateData: exchangeRateData,
+        rates: exchangeRateData.rates,
       ));
     } on RedundantRequestException catch (e) {
       log(e.toString());
@@ -48,7 +47,6 @@ class ExchangeRateCubit extends BaseCubit<ExchangeRateState> {
     try {
       emit(state.copyWith(status: ExchangeRateStateStatus.loading));
       final symbolsData = await _exchangeRateRepository.getSymbols();
-      log(symbolsData.symbolCodes?.first ?? 'no data');
       emit(state.copyWith(
         status: ExchangeRateStateStatus.loaded,
         symbolsData: symbolsData,
@@ -67,21 +65,35 @@ class ExchangeRateCubit extends BaseCubit<ExchangeRateState> {
 
   Future<void> refresh() => loadExchangeRates(refresh: true);
 
-  void updateCurrencyData({
-    String? base,
-    String? symbol,
-    String? startDate,
-    String? endDate,
-  }) async {
+  void updateBase({
+    required String base,
+  }) {
     emit(
-      state.copyWith(
-          exchangeRateData: ExchangeRates(
-        base: base,
-        symbol: symbol,
-        startDate: startDate,
-        endDate: endDate,
-      )),
+      state.copyWith(base: base),
     );
-    await refresh();
+  }
+
+  void updateSymbol({
+    required String symbol,
+  }) {
+    emit(
+      state.copyWith(symbol: symbol),
+    );
+  }
+
+  void updateStartDate({
+    required String startDate,
+  }) {
+    emit(
+      state.copyWith(startDate: startDate),
+    );
+  }
+
+  void updateEndDate({
+    required String endDate,
+  }) {
+    emit(
+      state.copyWith(endDate: endDate),
+    );
   }
 }
