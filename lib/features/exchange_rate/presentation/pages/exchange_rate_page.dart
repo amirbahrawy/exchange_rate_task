@@ -1,4 +1,5 @@
 import 'package:exchange_rate_task/core/di.dart';
+import 'package:exchange_rate_task/res/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,6 +47,7 @@ class ExchangeRatePage extends StatelessWidget {
                     const Text(
                       'Select date range ',
                       style: TextStyle(
+                        color: AppColors.ACCENT_COLOR,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -123,6 +125,7 @@ class ExchangeRatePage extends StatelessWidget {
                     const Text(
                       'Select Currencies',
                       style: TextStyle(
+                        color: AppColors.ACCENT_COLOR,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -205,6 +208,7 @@ class ExchangeRatePage extends StatelessWidget {
           child: Text(
             'No data found',
             style: TextStyle(
+              color: AppColors.ACCENT_COLOR,
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),

@@ -15,7 +15,9 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ExchangeRatePage(),
-    );
+        home: ExchangeRatePage(),
+        theme: ThemeData(
+          primarySwatch: Colors.deepPurple,
+        ));
   }
 }
