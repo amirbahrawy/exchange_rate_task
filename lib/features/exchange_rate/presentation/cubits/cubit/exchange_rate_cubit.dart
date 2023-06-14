@@ -10,21 +10,25 @@ import 'exchange_rate_state.dart';
 class ExchangeRateCubit extends BaseCubit<ExchangeRateState> {
   ExchangeRateCubit(
     this._exchangeRateRepository,
-  ) : super(ExchangeRateState());
+  ) : super(const ExchangeRateState());
 
   final ExchangeRateRepository _exchangeRateRepository;
 
   Future<void> loadExchangeRates({
     bool refresh = false,
+    String? base,
+    String? symbol,
+    String? startDate,
+    String? endDate,
   }) async {
     try {
       if (!refresh)
         emit(state.copyWith(status: ExchangeRateStateStatus.rateLoading));
       final exchangeRateData = await _exchangeRateRepository.getExchangeRates(
-        base: state.base,
-        symbols: state.symbol,
-        startDate: state.startDate,
-        endDate: state.endDate,
+        base: base,
+        symbol: symbol,
+        startDate: startDate,
+        endDate: endDate,
       );
       emit(state.copyWith(
         status: ExchangeRateStateStatus.loaded,
@@ -64,36 +68,4 @@ class ExchangeRateCubit extends BaseCubit<ExchangeRateState> {
   }
 
   Future<void> refresh() => loadExchangeRates(refresh: true);
-
-  void updateBase({
-    required String base,
-  }) {
-    emit(
-      state.copyWith(base: base),
-    );
-  }
-
-  void updateSymbol({
-    required String symbol,
-  }) {
-    emit(
-      state.copyWith(symbol: symbol),
-    );
-  }
-
-  void updateStartDate({
-    required String startDate,
-  }) {
-    emit(
-      state.copyWith(startDate: startDate),
-    );
-  }
-
-  void updateEndDate({
-    required String endDate,
-  }) {
-    emit(
-      state.copyWith(endDate: endDate),
-    );
-  }
 }

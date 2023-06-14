@@ -25,20 +25,12 @@ class ExchangeRateState {
   final String? errorMessage;
   final Map<String, double>? rates;
   final SymbolsData? symbolsData;
-  final String? base;
-  final String? symbol;
-  final String? startDate;
-  final String? endDate;
 
   const ExchangeRateState({
     this.status = ExchangeRateStateStatus.initial,
     this.errorMessage,
     this.rates,
     this.symbolsData,
-    this.base,
-    this.symbol,
-    this.startDate,
-    this.endDate,
   });
 
   @override
@@ -48,11 +40,7 @@ class ExchangeRateState {
     return other.status == status &&
         other.errorMessage == errorMessage &&
         mapEquals(other.rates, rates) &&
-        other.symbolsData == symbolsData &&
-        other.base == base &&
-        other.symbol == symbol &&
-        other.startDate == startDate &&
-        other.endDate == endDate;
+        other.symbolsData == symbolsData;
   }
 
   @override
@@ -60,11 +48,7 @@ class ExchangeRateState {
     return status.hashCode ^
         errorMessage.hashCode ^
         rates.hashCode ^
-        symbolsData.hashCode ^
-        base.hashCode ^
-        symbol.hashCode ^
-        startDate.hashCode ^
-        endDate.hashCode;
+        symbolsData.hashCode;
   }
 
   ExchangeRateState copyWith({
@@ -72,20 +56,12 @@ class ExchangeRateState {
     String? errorMessage,
     Map<String, double>? rates,
     SymbolsData? symbolsData,
-    String? base,
-    String? symbol,
-    String? startDate,
-    String? endDate,
   }) {
     return ExchangeRateState(
       status: status ?? this.status,
       errorMessage: errorMessage ?? this.errorMessage,
       rates: rates ?? this.rates,
       symbolsData: symbolsData ?? this.symbolsData,
-      base: base ?? this.base,
-      symbol: symbol ?? this.symbol,
-      startDate: startDate ?? this.startDate,
-      endDate: endDate ?? this.endDate,
     );
   }
 }

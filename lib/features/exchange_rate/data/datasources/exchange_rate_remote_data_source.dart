@@ -8,7 +8,7 @@ import '../models/exchange_rate.dart';
 abstract class ExchangeRateRemoteDataSource {
   Future<ExchangeRates> getExchangeRates({
     String? base,
-    String? symbols,
+    String? symbol,
     String? startDate,
     String? endDate,
   });
@@ -23,7 +23,7 @@ class ExchangeRateRemoteDataSourceImpl implements ExchangeRateRemoteDataSource {
   @override
   Future<ExchangeRates> getExchangeRates({
     String? base,
-    String? symbols,
+    String? symbol,
     String? startDate,
     String? endDate,
   }) async {
@@ -31,7 +31,7 @@ class ExchangeRateRemoteDataSourceImpl implements ExchangeRateRemoteDataSource {
 
     final params = {
       'base': base,
-      'symbols': symbols,
+      'symbols': symbol,
       'start_date': startDate,
       'end_date': endDate,
     };
