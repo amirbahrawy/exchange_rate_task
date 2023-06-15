@@ -196,7 +196,7 @@ class _ExchangeRatePageState extends State<ExchangeRatePage> {
       children: [
         Expanded(
           child: DropdownButton(
-              hint: const Text('Select Base Currency'),
+              hint: const Text('Select Base'),
               value: baseCurrency,
               items: state.symbolsData?.symbolCodes?.map((e) {
                 return DropdownMenuItem(
@@ -213,7 +213,7 @@ class _ExchangeRatePageState extends State<ExchangeRatePage> {
         const SizedBox(width: 16.0),
         Expanded(
           child: DropdownButton(
-              hint: const Text('Select Destination Currency'),
+              hint: const Text('Select Destination'),
               value: destinationCurrency,
               items: state.symbolsData?.symbolCodes?.map((e) {
                 return DropdownMenuItem(
