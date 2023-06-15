@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:exchange_rate_task/core/exceptions/request_exception.dart';
 import 'package:exchange_rate_task/features/exchange_rate/data/models/exchange_rate.dart';
 import 'package:exchange_rate_task/features/exchange_rate/data/repository/exchange_rate_repository.dart';
@@ -25,7 +23,7 @@ void main() {
 
   final exchangeRateData = ExchangeRateData();
 
-  group("loadHome", () {
+  group("load exchange rates", () {
     test(
       "Initial state should be HomeState(status: HomeStateStatus.initial)",
       () async {
@@ -60,7 +58,7 @@ void main() {
     );
 
     test(
-      "Should emit Loading then Error states when the getHomePageDate throw an Exception",
+      "Should emit Loading then Error states when the getExchangeRate throw an Exception",
       () async {
         //arrange
         when(() => exchangeRateRepository.getExchangeRates())
