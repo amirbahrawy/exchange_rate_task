@@ -1,13 +1,21 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/foundation.dart';
 
-class ExchangeRates {
+class ExchangeRateData {
   Map<String, double>? rates;
+  final String? baseCurrency;
+  final String? destinationCurrency;
+  final String? startDate;
+  final String? endDate;
 
-  ExchangeRates({
+  ExchangeRateData({
     this.rates,
+    this.baseCurrency,
+    this.destinationCurrency,
+    this.startDate,
+    this.endDate,
   });
-  factory ExchangeRates.fromMap(Map<String, dynamic> map) {
+  factory ExchangeRateData.fromMap(Map<String, dynamic> map) {
     Map<String, dynamic> ratesMap = map['rates'];
     Map<String, double> rates = {};
 
@@ -15,24 +23,50 @@ class ExchangeRates {
       rates[date] = (value as Map<String, dynamic>).values.first.toDouble();
     });
 
-    return ExchangeRates(rates: rates);
+    return ExchangeRateData(rates: rates);
+  }
+  Map<String, dynamic> toMap() {
+    return {
+      'base': baseCurrency,
+      'symbols': destinationCurrency,
+      'start_date': startDate,
+      'end_date': endDate,
+    };
   }
 
   @override
-  bool operator ==(covariant ExchangeRates other) {
+  bool operator ==(covariant ExchangeRateData other) {
     if (identical(this, other)) return true;
 
-    return mapEquals(other.rates, rates);
+    return mapEquals(other.rates, rates) &&
+        other.baseCurrency == baseCurrency &&
+        other.destinationCurrency == destinationCurrency &&
+        other.startDate == startDate &&
+        other.endDate == endDate;
   }
 
   @override
-  int get hashCode => rates.hashCode;
+  int get hashCode {
+    return rates.hashCode ^
+        baseCurrency.hashCode ^
+        destinationCurrency.hashCode ^
+        startDate.hashCode ^
+        endDate.hashCode;
+  }
 
-  ExchangeRates copyWith({
+  ExchangeRateData copyWith({
     Map<String, double>? rates,
+    String? baseCurrency,
+    String? destinationCurrency,
+    String? startDate,
+    String? endDate,
   }) {
-    return ExchangeRates(
+    return ExchangeRateData(
       rates: rates ?? this.rates,
+      baseCurrency: baseCurrency ?? this.baseCurrency,
+      destinationCurrency: destinationCurrency ?? this.destinationCurrency,
+      startDate: startDate ?? this.startDate,
+      endDate: endDate ?? this.endDate,
     );
   }
 }

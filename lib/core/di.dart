@@ -1,4 +1,4 @@
-import '../features/exchange_rate/data/datasources/exchange_rate_remote_data_source.dart';
+import '../features/exchange_rate/data/datasources/exchange_rate_remote_datasource.dart';
 import '../features/exchange_rate/data/repository/exchange_rate_repository.dart';
 import '../features/exchange_rate/presentation/cubits/cubit/exchange_rate_cubit.dart';
 import 'network/network_service.dart';

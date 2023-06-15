@@ -1,4 +1,5 @@
 import 'package:exchange_rate_task/core/di.dart';
+import 'package:exchange_rate_task/features/exchange_rate/data/models/exchange_rate.dart';
 import 'package:exchange_rate_task/res/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +21,8 @@ class _ExchangeRatePageState extends State<ExchangeRatePage> {
   late final GlobalKey<FormState> _formKey;
   late final TextEditingController _startDateController;
   late final TextEditingController _endDateController;
-  String? base;
-  String? symbol;
+  String? baseCurrency;
+  String? destinationCurrency;
 
   @override
   void initState() {
@@ -195,8 +196,8 @@ class _ExchangeRatePageState extends State<ExchangeRatePage> {
       children: [
         Expanded(
           child: DropdownButton(
-              hint: const Text('Select Base'),
-              value: base,
+              hint: const Text('Select Base Currency'),
+              value: baseCurrency,
               items: state.symbolsData?.symbolCodes?.map((e) {
                 return DropdownMenuItem(
                   child: Text(e),
@@ -205,15 +206,15 @@ class _ExchangeRatePageState extends State<ExchangeRatePage> {
               }).toList(),
               onChanged: (value) {
                 setState(() {
-                  base = value.toString();
+                  baseCurrency = value.toString();
                 });
               }),
         ),
         const SizedBox(width: 16.0),
         Expanded(
           child: DropdownButton(
-              hint: const Text('Select Symbol'),
-              value: symbol,
+              hint: const Text('Select Destination Currency'),
+              value: destinationCurrency,
               items: state.symbolsData?.symbolCodes?.map((e) {
                 return DropdownMenuItem(
                   child: Text(e),
@@ -222,7 +223,7 @@ class _ExchangeRatePageState extends State<ExchangeRatePage> {
               }).toList(),
               onChanged: (value) {
                 setState(() {
-                  symbol = value.toString();
+                  destinationCurrency = value.toString();
                 });
               }),
         ),
@@ -242,12 +243,13 @@ class _ExchangeRatePageState extends State<ExchangeRatePage> {
         child: ElevatedButton(
           onPressed: () {
             if (_formKey.currentState!.validate()) {
-              cubit.loadExchangeRates(
-                base: base,
-                symbol: symbol,
+              final exchangeRateData = ExchangeRateData(
+                baseCurrency: baseCurrency,
+                destinationCurrency: destinationCurrency,
                 startDate: _startDateController.text,
                 endDate: _endDateController.text,
               );
+              cubit.loadExchangeRates(exchangeRateData: exchangeRateData);
             }
           },
           style: ButtonStyle(

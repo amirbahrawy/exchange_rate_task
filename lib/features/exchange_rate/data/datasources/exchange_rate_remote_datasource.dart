@@ -6,12 +6,8 @@ import '../../../../core/network/network_service.dart';
 import '../models/exchange_rate.dart';
 
 abstract class ExchangeRateRemoteDataSource {
-  Future<ExchangeRates> getExchangeRates({
-    String? base,
-    String? symbol,
-    String? startDate,
-    String? endDate,
-  });
+  Future<ExchangeRateData> getExchangeRates(
+      {ExchangeRateData? exchangeRateData});
   Future<SymbolsData> getSymbols();
 }
 
@@ -21,27 +17,19 @@ class ExchangeRateRemoteDataSourceImpl implements ExchangeRateRemoteDataSource {
   ExchangeRateRemoteDataSourceImpl(this._networkService);
 
   @override
-  Future<ExchangeRates> getExchangeRates({
-    String? base,
-    String? symbol,
-    String? startDate,
-    String? endDate,
+  Future<ExchangeRateData> getExchangeRates({
+    ExchangeRateData? exchangeRateData,
   }) async {
     const url = ApiEndPoint.GET_EXCHANGE_RATES;
 
-    final params = {
-      'base': base,
-      'symbols': symbol,
-      'start_date': startDate,
-      'end_date': endDate,
-    };
+    final params = exchangeRateData?.toMap();
 
     return _networkService.get(url, queryParameters: params).then((response) {
       //handle error changes based on the api and backend
       if (![201, 200].contains(response.statusCode))
         throw RequestException('Connection Error ${response.statusCode}');
 
-      return ExchangeRates.fromMap(response.data);
+      return ExchangeRateData.fromMap(response.data);
     });
   }
 

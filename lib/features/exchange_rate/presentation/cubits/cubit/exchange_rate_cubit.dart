@@ -16,23 +16,16 @@ class ExchangeRateCubit extends BaseCubit<ExchangeRateState> {
 
   Future<void> loadExchangeRates({
     bool refresh = false,
-    String? base,
-    String? symbol,
-    String? startDate,
-    String? endDate,
+    ExchangeRateData? exchangeRateData,
   }) async {
     try {
       if (!refresh)
         emit(state.copyWith(status: ExchangeRateStateStatus.rateLoading));
-      final exchangeRateData = await _exchangeRateRepository.getExchangeRates(
-        base: base,
-        symbol: symbol,
-        startDate: startDate,
-        endDate: endDate,
-      );
+      final data = await _exchangeRateRepository.getExchangeRates(
+          exchangeRateData: exchangeRateData);
       emit(state.copyWith(
         status: ExchangeRateStateStatus.loaded,
-        rates: exchangeRateData.rates,
+        rates: data.rates,
       ));
     } on RedundantRequestException catch (e) {
       log(e.toString());

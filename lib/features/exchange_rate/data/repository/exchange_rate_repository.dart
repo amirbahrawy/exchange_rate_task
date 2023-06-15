@@ -1,14 +1,10 @@
-import '../datasources/exchange_rate_remote_data_source.dart';
+import '../datasources/exchange_rate_remote_datasource.dart';
 import '../models/exchange_rate.dart';
 import '../models/symbols_data.dart';
 
 abstract class ExchangeRateRepository {
-  Future<ExchangeRates> getExchangeRates({
-    String? base,
-    String? symbol,
-    String? startDate,
-    String? endDate,
-  });
+  Future<ExchangeRateData> getExchangeRates(
+      {ExchangeRateData? exchangeRateData});
   Future<SymbolsData> getSymbols();
 }
 
@@ -18,18 +14,10 @@ class ExchangeRateRepositoryImpl implements ExchangeRateRepository {
   ExchangeRateRepositoryImpl(this._exchangeRateRemoteDataSource);
 
   @override
-  Future<ExchangeRates> getExchangeRates({
-    String? base,
-    String? symbol,
-    String? startDate,
-    String? endDate,
-  }) async {
+  Future<ExchangeRateData> getExchangeRates(
+      {ExchangeRateData? exchangeRateData}) async {
     return await _exchangeRateRemoteDataSource.getExchangeRates(
-      base: base,
-      symbol: symbol,
-      startDate: startDate,
-      endDate: endDate,
-    );
+        exchangeRateData: exchangeRateData);
   }
 
   @override
