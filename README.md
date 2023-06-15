@@ -19,7 +19,7 @@ This Flutter app allows users to view the historical currency conversion rates b
 **Expected Result:** The loading indicator is displayed until the symbols are loaded
 When open page loading is shown until symbols are loaded
 
-![b74e0fdd-cbfe-416d-9423-78df29a44d2b](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/10c300b1-46f7-41fc-b226-eb961cd31150)
+![b74e0fdd-cbfe-416d-9423-78df29a44d2b](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/0dc5f688-c2a7-4026-964c-d4637987c913)
 
 ### Test Case 2: Error When Opening Page (Connection Error)
  
@@ -33,7 +33,7 @@ When open page loading is shown until symbols are loaded
 
 **Expected Result:** An error message is displayed indicating the connection error and the retry button to load data again.
 
-![2](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/62b0411c-1cf9-484b-9f1a-f1823d501953)
+![1](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/9c5ecb86-d888-4a51-a76b-0403cc42d40d)
 
 
 ### Test Case 3: Retrieving Data with Missing Start or End Date
@@ -50,7 +50,7 @@ When open page loading is shown until symbols are loaded
 
 **Expected Result:** An error message is displayed indicating that the start or end date is missing.
 
-![3](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/2190dab4-2c14-478d-80ad-5b157e09af08)
+![2](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/6154b85b-cbbc-4e49-ac2b-f4d94115d485)
 
 ### Test Case 4: Retrieving Data
  
@@ -66,8 +66,8 @@ When open page loading is shown until symbols are loaded
 
 **Expected Result:** The "Get Exchange Rate" button animates to a loading state until the data is retrieved.
 
-![4_1](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/458b636e-34f3-498c-a181-d133d7fe2a92)
-![4_2](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/b5e61979-8cc9-4463-8162-c33a5013a889)
+![4_1](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/11da8847-295f-4d6b-b4be-5ae0aae2680a)
+![4_2](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/43839ecb-f6f0-48cb-bf4b-4f19b9d48a87)
 
 ### Test Case 5: Viewing Currency Conversion History
  
@@ -81,11 +81,12 @@ When open page loading is shown until symbols are loaded
 
 **Expected Result:**  The app displays the historical currency conversion rates.
 
-![5](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/99c40f30-e107-4159-9545-c056ab167b49)
+![5](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/2a4d9156-6098-47eb-9575-851c8429aa4c)
 
 ## Examples of the inspector
 
-![11](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/e4861c80-8ef2-496b-ba72-bcfb6bf2711a)
-![12](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/afc47870-1568-4d06-b869-5485f4a4b665)
-![13](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/23db1505-ad00-432c-b30a-028b79def80a)
+![11](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/bc5e1c14-106a-4bc8-b271-4e628e872dc3)
+![12](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/ea02f961-10c1-4f9d-b685-be21b61119ce)
+![13](https://github.com/amirbahrawy/exchange_rate_task/assets/38887148/17b8f99f-3b8b-4125-a01e-3d96b4cb3d37)
+
 
